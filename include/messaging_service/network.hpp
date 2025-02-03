@@ -5,13 +5,14 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <stdint.h>
-#include "common.h"
+#include "common.hpp"
 
 #define MESSAGING_SERVICE_MAX_CONNECTIONS 5
 
 namespace Network {
 
 enum class SocketStatus {
+    DESTROYED,
     CLOSED,
     OPEN,
     LISTENING
@@ -48,7 +49,7 @@ class Socket {
         void                recieveMessage(); //TODO change signature after message.hpp
 
         //pure virtual functions
-        virtual void        openSocket(std::string address, uint16_t port) = 0;
+        virtual void        openSocket(std::string& address, uint16_t port) = 0;
 
 };//class Socket
 

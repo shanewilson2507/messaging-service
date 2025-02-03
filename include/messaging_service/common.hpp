@@ -1,5 +1,5 @@
-#ifndef MESSAGING_SERVICE_COMMON_H
-#define MESSAGING_SERVICE_COMMON_H
+#ifndef MESSAGING_SERVICE_COMMON_HPP
+#define MESSAGING_SERVICE_COMMON_HPP
 
 #include <stdarg.h>
 #include <stdint.h>
