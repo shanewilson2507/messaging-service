@@ -7,13 +7,10 @@
 
 class ClientSocket : public Network::Socket {
     private:
-        struct sockaddr_in  m_socket_addr;
+        struct sockaddr_in  m_server_addr;
     public:
         //Constructor
         explicit ClientSocket();
-
-        //Destructor
-        ~ClientSocket();
 
         //public member functions
         void openSocket(const std::string& address, uint16_t port) override;

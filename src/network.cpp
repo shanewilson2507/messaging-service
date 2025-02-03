@@ -7,9 +7,9 @@
 namespace Network {
 
 Socket::Socket(SocketType socket_type)
-    :   m_socket_type(socket_type),
-        m_socket_FD(-1), //default for no socket
-        m_socket_status(SocketStatus::DESTROYED){ //socket doesn't exist yet 
+    :   m_socket_status(SocketStatus::DESTROYED), //socket doesn't exist yet
+        m_socket_type(socket_type),
+        m_socket_FD(-1){ //default for no socket  
 }
 
 
