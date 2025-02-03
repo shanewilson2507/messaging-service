@@ -9,14 +9,14 @@ namespace Network {
 Socket::Socket(SocketType socket_type)
     :   m_socket_type(socket_type),
         m_socket_FD(-1), //default for no socket
-        m_socket_status(SocketStatus::DESTROYED), //socket doesn't exist yet
-        m_socket_addr{0} {
+        m_socket_status(SocketStatus::DESTROYED){ //socket doesn't exist yet 
 }
 
 
 Socket::~Socket() {
-    //TODO
+    this->closeSocket();
 }
+
 
 SocketStatus Socket::getSocketStatus() const {
     return this->m_socket_status;
@@ -33,27 +33,23 @@ int Socket::getFileDescriptor() const {
 }
 
 
-struct sockaddr_in Socket::getAddress() const {
-    return this->m_socket_addr;
-}
-
-
-void Socket::createSocket() {
+bool Socket::createSocket() {
     if (this->m_socket_FD != -1) {
         debug_print("Socket " + std::to_string(this->m_socket_FD) + " already created");
-        return;
+        return false;
     }
 
     this->m_socket_FD = socket(AF_INET, SOCK_STREAM, 0); //creates an unbound socket
     
     if (this->m_socket_FD == -1) {
-        debug_print("Failed to create socket");
-        return;
+        std::cerr<<"Failed to create socket" << std::endl;
+        return false;
     }
 
     this->m_socket_status = SocketStatus::CLOSED;
 
     debug_print("Socket created: " + std::to_string(this->m_socket_FD));;
+    return true;
 }
 
 
@@ -61,7 +57,7 @@ void Socket::closeSocket() {
     if (this->m_socket_FD != -1) {
         int temp = this->m_socket_FD;
         if (close(this->m_socket_FD) == -1) {
-            debug_print("Socket " + std::to_string(temp) + " failed to close");
+            std::cerr<< "Socket " << std::to_string(temp) << " failed to close"<< std::endl;
             return;
         }
         this->m_socket_FD = -1;

@@ -28,7 +28,6 @@ class Socket {
         SocketStatus        m_socket_status;
         SocketType          m_socket_type;
         int                 m_socket_FD;
-        struct sockaddr_in  m_socket_addr;
 
 
     public:
@@ -43,13 +42,13 @@ class Socket {
         int                 getFileDescriptor()   const;
         struct sockaddr_in  getAddress()          const;
 
-        void                createSocket();
+        bool                createSocket();
         void                closeSocket();
         void                sendMessage();//TODO change signature after message.hpp
         void                recieveMessage(); //TODO change signature after message.hpp
 
         //pure virtual functions
-        virtual void        openSocket(std::string& address, uint16_t port) = 0;
+        virtual void        openSocket(const std::string& address, uint16_t port) = 0;
 
 };//class Socket
 
