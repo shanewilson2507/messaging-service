@@ -8,6 +8,7 @@ ClientSocket::ClientSocket()
 
 void ClientSocket::openSocket(const std::string& address, uint16_t port) {
     if(!this->createSocket()) {
+        debug_print("ClientSocket failed to be created");
         return;
     } 
     memset(&this->m_server_addr, 0, sizeof(this->m_server_addr));

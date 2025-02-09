@@ -8,6 +8,7 @@
 #include "common.hpp"
 
 #define MESSAGING_SERVICE_MAX_CONNECTIONS 5
+#define MESSAGING_SERVICE_PORT 6969
 
 namespace Network {
 

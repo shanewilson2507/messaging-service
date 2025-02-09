@@ -13,7 +13,7 @@ class ClientSocket : public Network::Socket {
         explicit ClientSocket();
 
         //public member functions
-        void openSocket(const std::string& address, uint16_t port) override;
+        void openSocket(const std::string& address, uint16_t port=MESSAGING_SERVICE_PORT) override;
         struct sockaddr_in getAddress() const;
 };
 
